@@ -13,4 +13,4 @@ I named the ship Ezekiel, after the fact that Ezekiel 1 has been interpreted by 
 
 ##Can I see a demo?
 
-[http://radartech.com.au/spacegame](http://radartech.com.au/spacegame)
+[http://demo.radartech.com.au/spacegame](http://demo.radartech.com.au/spacegame)
