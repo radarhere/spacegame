@@ -3,7 +3,8 @@ spacegame
 
 HTML5 canvas space game
 
-##What is it?
+What is it?
+-----------
 
 Last year, a friend of mine asked if I could help them out by making a space-based web game for their children's holiday club. While there are many such games out there on the web, they wanted one that didn't involve lasers or explosions in any way.
 
@@ -11,6 +12,7 @@ The end result was this HTML5 canvas game in which the pilot ship has to avoid b
 
 I named the ship Ezekiel, after the fact that Ezekiel 1 has been interpreted by some as a UFO sighting.
 
-##Can I see a demo?
+Can I see a demo?
+-------------------
 
 [http://demo.radartech.com.au/spacegame](http://demo.radartech.com.au/spacegame)
