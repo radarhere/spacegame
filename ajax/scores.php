@@ -58,4 +58,3 @@ if ($username != null) {
 
 $data['scores'] = $scores;
 echo json_encode($data);
-?>
