@@ -17,8 +17,8 @@ I am aware that mysql_query is now deprecated. However, as the production enviro
 Anyone wishing to use this code should find the upgrade simple enough.
 */
 
-$data = array('id'=>null);
-$scores = array();
+$data = ['id'=>null];
+$scores = [];
 
 $username = null;
 $password = null;
