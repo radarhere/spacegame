@@ -11,10 +11,6 @@ CREATE TABLE IF NOT EXISTS `scores` (
   `dateCreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )
-
-I am aware that mysql_query is now deprecated. However, as the production environment of this project is out of my control, I am not presently motivated to update it.
-
-Anyone wishing to use this code should find the upgrade simple enough.
 */
 
 $data = ['id'=>null];
@@ -25,25 +21,33 @@ $password = null;
 $database = null;
 
 if ($username != null) {
-	mysql_connect("localhost",$username,$password);
-	@mysql_select_db($database) or die();
+	try {
+		$dbh = new PDO('mysql:host=localhost;dbname='.$database, $username, $password);
+	} catch (PDOException $_) {
+		exit();
+	}
 
 	$currentScore = null;
 	if (isset($_GET['name']) && isset($_GET['id'])) {
-		mysql_query("UPDATE `scores` SET name = '".mysql_real_escape_string($_GET['name'])."' WHERE id = ".mysql_real_escape_string($_GET['id']).";");
+		$sth = $dbh->prepare('UPDATE `scores` SET name = ? WHERE id = ?');
+		$sth->execute([$_GET['name'], $_GET['id']]);
 	} else if (isset($_GET['score']) && isset($_GET['level']) && $_GET['score'] != 0) {
-		mysql_query("INSERT INTO `scores` (score, level, ip) VALUES ('".mysql_real_escape_string($_GET['score'])."','".mysql_real_escape_string($_GET['level'])."','".mysql_real_escape_string($_SERVER['SERVER_ADDR'])."');");
-		$currentScore = mysql_insert_id();
+		$sth = $dbh->prepare('INSERT INTO `scores` (score, level, ip) VALUES (?, ?, ?)');
+		$sth->execute([$_GET['score'], $_GET['level'], $_SERVER['SERVER_ADDR']]);
+
+		$currentScore = $dbh->lastInsertId();
 	}
 
 	if ($currentScore != null) {
-		$result = mysql_query("SELECT id, name, score FROM `scores` WHERE name IS NOT NULL OR id = ".mysql_real_escape_string($currentScore)." ORDER BY score DESC, dateCreated ASC LIMIT 3");
+		$sth = $dbh->prepare('SELECT id, name, score FROM `scores` WHERE name IS NOT NULL OR id = ? ORDER BY score DESC, dateCreated ASC LIMIT 3');
+		$sth->execute([$currentScore]);
 	} else {
-		$result = mysql_query("SELECT id, name, score FROM `scores` WHERE name IS NOT NULL ORDER BY score DESC, dateCreated ASC LIMIT 3");
+		$sth = $dbh->prepare('SELECT id, name, score FROM `scores` WHERE name IS NOT NULL ORDER BY score DESC, dateCreated ASC LIMIT 3');
+		$sth->execute();
 	}
 	$i = 0;
 
-	while ($row = mysql_fetch_array($result)) {
+	foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
 		$i += 1;
 
 		$name = $row['name'];
@@ -53,7 +57,6 @@ if ($username != null) {
 		}
 		$scores[$name.strval($i)] = $row['score'];
 	}
-	mysql_close();
 }
 
 $data['scores'] = $scores;
