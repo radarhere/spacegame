@@ -27,7 +27,6 @@ if ($username != null) {
 		exit();
 	}
 
-	$currentScore = null;
 	if (isset($_GET['name']) && isset($_GET['id'])) {
 		$sth = $dbh->prepare('UPDATE `scores` SET name = ? WHERE id = ?');
 		$sth->execute([$_GET['name'], $_GET['id']]);
@@ -35,12 +34,12 @@ if ($username != null) {
 		$sth = $dbh->prepare('INSERT INTO `scores` (score, level, ip) VALUES (?, ?, ?)');
 		$sth->execute([$_GET['score'], $_GET['level'], $_SERVER['SERVER_ADDR']]);
 
-		$currentScore = $dbh->lastInsertId();
+		$currentScoreId = $dbh->lastInsertId();
 	}
 
-	if ($currentScore != null) {
+	if (!empty($currentScoreId)) {
 		$sth = $dbh->prepare('SELECT id, name, score FROM `scores` WHERE name IS NOT NULL OR id = ? ORDER BY score DESC, dateCreated ASC LIMIT 3');
-		$sth->execute([$currentScore]);
+		$sth->execute([$currentScoreId]);
 	} else {
 		$sth = $dbh->prepare('SELECT id, name, score FROM `scores` WHERE name IS NOT NULL ORDER BY score DESC, dateCreated ASC LIMIT 3');
 		$sth->execute();
