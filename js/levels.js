@@ -1,4 +1,4 @@
-//The locations of the stars in Level 1 is fixed
+//The locations of the stars in Level 1 are fixed
 var starPath = [
 [375, 440],
 [375, 605],
