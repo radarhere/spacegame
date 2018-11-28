@@ -1,11 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title>Ezekiel</title>
 		<link href="css/style.min.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<!-- Taken from https://github.com/js-cookie/js-cookie -->
-		<script type="text/javascript" src="js/js.cookie-2.2.0.min.js"></script>
-		<script type="text/javascript" src="js/script.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<?php //Taken from https://github.com/js-cookie/js-cookie ?>
+		<script src="js/js.cookie-2.2.0.min.js"></script>
+		<script src="js/script.min.js"></script>
 	</head>
 	<body>
 		<div class="game">
