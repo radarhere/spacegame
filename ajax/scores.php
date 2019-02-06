@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `scores` (
   `score` int(11) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `ip` varchar(255) DEFAULT NULL,
-  `dateCreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )
 */
