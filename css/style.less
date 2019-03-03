@@ -1,4 +1,6 @@
-body { margin: 0; }
+body {
+	margin: 0;
+}
 
 .loading {
 	width: 750px;
@@ -42,17 +44,17 @@ canvas {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-}
-#sound .control {
-	position: absolute;
-	left: 0;
-	top: 0;
-	display: block;
-	height: 50px;
-	width: 50px;
-	background-image: url(../images/sound.png);
-	background-repeat: no-repeat;
-}
-#sound.muted .control {
-	width: 25px;
+	.control {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: block;
+		height: 50px;
+		width: 50px;
+		background-image: url(../images/sound.png);
+		background-repeat: no-repeat;
+	}
+	&.muted .control {
+		width: 25px;
+	}
 }
