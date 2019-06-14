@@ -3,9 +3,9 @@
 	<head>
 		<title>Ezekiel</title>
 		<link href="css/style.min.css" rel="stylesheet" type="text/css">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="js/libs/jquery.min.js"></script>
 		<?php //Taken from https://github.com/js-cookie/js-cookie ?>
-		<script src="js/js.cookie-2.2.0.min.js"></script>
+		<script src="js/libs/js.cookie-2.2.0.min.js"></script>
 		<script src="js/script.min.js"></script>
 	</head>
 	<body>
