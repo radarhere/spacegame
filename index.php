@@ -3,10 +3,6 @@
 	<head>
 		<title>Ezekiel</title>
 		<link href="css/style.min.css" rel="stylesheet" type="text/css">
-		<script src="js/libs/jquery.min.js"></script>
-		<?php //Taken from https://github.com/js-cookie/js-cookie ?>
-		<script src="js/libs/js.cookie.min.js"></script>
-		<script src="js/script.min.js"></script>
 	</head>
 	<body>
 		<div class="game">
@@ -16,5 +12,8 @@
 			</canvas>
 			<div id="sound"><div class="control"></div><span>Sound On</span></div>
 		</div>
+		<?php //Taken from https://github.com/js-cookie/js-cookie ?>
+		<script src="js/libs/js.cookie.min.js"></script>
+		<script src="js/script.min.js"></script>
 	</body>
 </html>

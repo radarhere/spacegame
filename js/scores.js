@@ -69,30 +69,16 @@ function acceptKey(eKeyCode) {
 }
 
 function saveScore(name) {
-	$.ajax({
-		url: 'ajax/scores.php?name='+name+'&id='+highScoreId,
-		dataType: 'json',
-		error: function(xhr_data) {
-		},
-		success: function(data, textStatus, xhr_data) {
-			scores = data["scores"];
-			highScoreId = null;
-		},
-		contentType: 'application/json'
+	fetch('ajax/scores.php?name='+name+'&id='+highScoreId).then(response => response.json()).then(data => {
+		scores = data["scores"];
+		highScoreId = null;
 	});
 }
 
 function getScores() {
-	$.ajax({
-		url: 'ajax/scores.php?score='+score+'&level='+level,
-		dataType: 'json',
-		error: function(xhr_data) {
-		},
-		success: function(data, textStatus, xhr_data) {
-			scores = data["scores"];
-			highScoreId = data["id"];
-			nameFlicker = 0;
-		},
-		contentType: 'application/json'
+	fetch('ajax/scores.php?score='+score+'&level='+level).then(response => response.json()).then(data => {
+		scores = data["scores"];
+		highScoreId = data["id"];
+		nameFlicker = 0;
 	});
 }

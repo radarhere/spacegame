@@ -258,19 +258,3 @@ function resetScore() {
 	score = 0;
 	lives = 3;
 }
-
-window.onload = function() {
-	var canvas = document.getElementById('game');
-	effectiveCanvas = {width:canvas.width,height:canvas.height - 60};
-
-	if (canvas.getContext) {
-		ctx = canvas.getContext('2d');
-
-		resetScore();
-		resetGame();
-
-		setInterval(update, 17);
-	} else {
-		alert('Your browser does not support this game.');
-	}
-}

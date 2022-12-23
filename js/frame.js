@@ -1,23 +1,41 @@
-$(document).ready(function () {
+window.onload = function() {
+	const sound = document.getElementById('sound')
 	if (typeof Cookies !== 'undefined' && Cookies.get('volume') == 0) {
-		$('#sound').addClass('muted').find('span').text('Sound Off');
+		sound.classList.add('muted')
+		sound.querySelector('span').innerText = 'Sound Off';
 	}
 
-	$('#sound').click(function () {
-		$(this).toggleClass('muted');
-		if ($(this).hasClass('muted')) {
-			$(this).find('span').text('Sound Off');
+	sound.addEventListener('click', function () {
+		this.classList.toggle('muted');
+		const span = this.querySelector('span')
+		if (this.classList.contains('muted')) {
+			span.innerText = 'Sound Off';
 			if (typeof Cookies !== 'undefined') Cookies.set('volume', 0, {expires: 30});
 			
 			if (currentTheme != null) currentTheme.pause();
 		} else {
-			$(this).find('span').text('Sound On');
+			span.innerText = 'Sound On';
 			if (typeof Cookies !== 'undefined') Cookies.set('volume', 1, {expires: 30});
 			
 			if (currentTheme != null) currentTheme.play();
 		}
 	});
 
-	$('.loading').hide();
-	$('#game, #sound').show();
-});
+	document.querySelector('.loading').remove();
+	document.querySelectorAll('#game, #sound').forEach(item => {
+		item.style.display = 'block';
+	});
+
+	const canvas = document.getElementById('game');
+	effectiveCanvas = {
+	  width: canvas.width,
+	  height: canvas.height - 60
+	};
+
+	ctx = canvas.getContext('2d');
+
+	resetScore();
+	resetGame();
+
+	setInterval(update, 17);
+};
